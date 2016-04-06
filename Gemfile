@@ -4,6 +4,7 @@ gem "geminabox"
 gem "puma"
 
 group :deployment do
+  gem "dotenv"
   gem 'capistrano', '~> 3.1'
   gem 'capistrano-rbenv', '~> 2.0'
   gem "capistrano-bundler"

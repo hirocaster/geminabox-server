@@ -1,5 +1,5 @@
-role :app, %w{YOUR-SERVER-IP}
-set :ssh_options, { user: "YOUR-USER-NAME" }
+server ENV["GEMINABOX_SERVER_IP"].to_s, roles: %W{app}
+set :ssh_options, { user: ENV["GEMINABOX_USER_NAME"] }
 
 # server-based syntax
 # ======================

@@ -1,3 +1,6 @@
+role :app, %w{YOUR-SERVER-IP}
+set :ssh_options, { user: "YOUR-USER-NAME" }
+
 # server-based syntax
 # ======================
 # Defines a single server with a list of roles and multiple properties.

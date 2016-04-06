@@ -1,7 +1,9 @@
-role :app, %w{192.168.33.10}
+role :app, %w{127.0.0.1}
 
- set :ssh_options, {
-                    user: "vagrant"
+set :ssh_options, {
+                   port: 2222,
+                   user: "vagrant",
+                   password: "vagrant"
  }
 
 

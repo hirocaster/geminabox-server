@@ -6,12 +6,25 @@ set :repo_url, 'git@github.com:hirocaster/geminabox-server.git'
 
 set :bundle_jobs, 4
 
+set :linked_dirs, %w{log data tmp/pids vendor/bundle}
+
 set :rbenv_type, :system
 set :rbenv_ruby, File.read('.ruby-version').strip
 
+set :rbenv_path, "/usr/local/rbenv"
 set :rbenv_prefix, "RBENV_ROOT=#{fetch(:rbenv_path)} RBENV_VERSION=#{fetch(:rbenv_ruby)} #{fetch(:rbenv_path)}/bin/rbenv exec"
 set :rbenv_map_bins, %w{rake gem bundle ruby}
 set :rbenv_roles, :all # default value
+
+set :puma_nginx, :app
+set :puma_bind, %w(tcp://0.0.0.0:9292 unix:///srv/geminabox/shared/tmp/pids/puma.sock)
+set :puma_threads, [0, 16]
+set :puma_workers, 2
+set :puma_worker_timeout, 30
+
+set :bundle_bins, fetch(:bundle_bins).to_a.concat(%w{ puma pumactl })
+set :bundle_flags, '--deployment --quiet --path vendor/bundle'
+set :rbenv_map_bins, fetch(:rbenv_map_bins).to_a.concat(%w{ puma pumactl })
 
 # Default branch is :master
 # ask :branch, `git rev-parse --abbrev-ref HEAD`.chomp
